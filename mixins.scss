@@ -1,0 +1,435 @@
+@mixin background-gradient($startColor: #3C3C3C, $endColor: #999999) {
+    background-color: $startColor;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor));
+    background-image: -webkit-linear-gradient(top, $startColor, $endColor);
+    background-image:    -moz-linear-gradient(top, $startColor, $endColor);
+    background-image:     -ms-linear-gradient(top, $startColor, $endColor);
+    background-image:      -o-linear-gradient(top, $startColor, $endColor);
+    background-image:         linear-gradient(top, $startColor, $endColor);
+    filter:            progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}');
+}
+
+@mixin background-size($width: 100%, $height: 100%) {
+     -moz-background-size: $width $height;
+  -webkit-background-size: $width $height;
+          background-size: $width $height;
+}
+
+@mixin border-radius($radius: 5px) {
+    -moz-border-radius:    $radius !important;
+    -webkit-border-radius: $radius !important;
+    border-radius:         $radius !important;
+}
+
+@mixin border-radius-separate($topLeftRadius: 5px, $topRightRadius: 5px, $bottomLeftRadius: 5px, $bottomRightRadius: 5px) {
+    -webkit-border-top-left-radius:     $topLeftRadius;
+    -webkit-border-top-right-radius:    $topRightRadius;
+    -webkit-border-bottom-right-radius: $bottomRightRadius;
+    -webkit-border-bottom-left-radius:  $bottomLeftRadius;
+
+    -moz-border-radius-topleft:     $topLeftRadius;
+    -moz-border-radius-topright:    $topRightRadius;
+    -moz-border-radius-bottomright: $bottomRightRadius;
+    -moz-border-radius-bottomleft:  $bottomLeftRadius;
+
+    border-top-left-radius:     $topLeftRadius;
+    border-top-right-radius:    $topRightRadius;
+    border-bottom-right-radius: $bottomRightRadius;
+    border-bottom-left-radius:  $bottomLeftRadius;
+}
+
+@mixin box($orient: horizontal, $pack: center, $align: center) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    -webkit-box-orient: $orient;
+    -moz-box-orient:    $orient;
+    box-orient:         $orient;
+
+    -webkit-box-pack: $pack;
+    -moz-box-pack:    $pack;
+    box-pack:         $pack;
+
+    -webkit-box-align: $align;
+    -moz-box-align:    $align;
+    box-align:         $align;
+}
+
+@mixin box-rgba($r: 60, $g: 3, $b: 12, $opacity: 0.23, $color: #3C3C3C) {
+  background-color: transparent;
+  background-color: rgba($r, $g, $b, $opacity);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color}',endColorstr='#{$color}');
+            zoom:   1;
+}
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+  @if ($inset != "") {
+    -webkit-box-shadow: $inset $x $y $blur $color;
+    -moz-box-shadow:    $inset $x $y $blur $color;
+    box-shadow:         $inset $x $y $blur $color;
+  } @else {
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow:    $x $y $blur $color;
+    box-shadow:         $x $y $blur $color;
+  }
+}
+
+@mixin box-sizing($type: border-box) {
+    -webkit-box-sizing:   $type;
+    -moz-box-sizing:      $type;
+    box-sizing:           $type;
+}
+
+@mixin columns($count: 3, $gap: 10) {
+    -webkit-column-count: $count;
+    -moz-column-count:    $count;
+    column-count:         $count;
+
+    -webkit-column-gap:   $gap;
+    -moz-column-gap:      $gap;
+    column-gap:           $gap;
+}
+
+@mixin double-borders($colorOne: #3C3C3C, $colorTwo: #999999, $radius: 0) {
+    border: 1px solid $colorOne;
+
+    -webkit-box-shadow: 0 0 0 1px $colorTwo;
+    -moz-box-shadow:    0 0 0 1px $colorTwo;
+    box-shadow:         0 0 0 1px $colorTwo;
+
+    @include border-radius( $radius );
+}
+
+@mixin flex($value: 1) {
+    -webkit-box-flex: $value;
+    -moz-box-flex:    $value;
+    box-flex:         $value;
+}
+
+@mixin flip($scaleX: -1) {
+	-moz-transform:    scaleX($scaleX);
+	-o-transform:      scaleX($scaleX);
+	-webkit-transform: scaleX($scaleX);
+	transform:         scaleX($scaleX);
+	filter:            FlipH;
+	-ms-filter:        "FlipH";
+}
+@mixin origin($centerX: 1px, $centerY: 1px) {
+	-webkit-transform-origin: $centerX $centerY;
+	-moz-transform-origin:    $centerX $centerY;
+	-ms-transform-origin:     $centerX $centerY;
+	-o-transform-origin:      $centerX $centerY;
+}
+@mixin font-face($fontFamily: myFont, $eotFileSrc: 'myFont.eot', $woffFileSrc: 'myFont.woff', $ttfFileSrc: 'myFont.ttf') {
+  font-family: $fontFamily;
+  src: url($eotFileSrc)  format('eot'),
+       url($woffFileSrc) format('woff'),
+       url($ttfFileSrc)  format('truetype');
+}
+
+@mixin opacity($opacity: 0.5) {
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+    -ms-filter:     "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
+    -moz-opacity:   $opacity;
+    -khtml-opacity: $opacity;
+    opacity:        $opacity;
+}
+
+@mixin outline-radius($radius: 5px) {
+    -webkit-outline-radius: $radius;
+    -moz-outline-radius:    $radius;
+    outline-radius:         $radius;
+}
+
+@mixin resize($direction: both) {
+    -webkit-resize: $direction;
+    -moz-resize:    $direction;
+    resize:         $direction;
+}
+
+@mixin rotate($deg: 0, $m11: 0, $m12: 0, $m21: 0, $m22: 0) {
+     -moz-transform: rotate($deg + deg);
+       -o-transform: rotate($deg + deg);
+  -webkit-transform: rotate($deg + deg);
+      -ms-transform: rotate($deg + deg);
+          transform: rotate($deg + deg);
+             filter: progid:DXImageTransform.Microsoft.Matrix(
+                     M11=#{$m11}, M12=#{$m12}, M21=#{$m21}, M22=#{$m22}, sizingMethod='auto expand');
+               zoom: 1;
+}
+
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4)) {
+    text-shadow: $x $y $blur $color;
+}
+
+@mixin transform($params) {
+    -webkit-transform: $params;
+    -moz-transform:    $params;
+    transform:         $params;
+}
+
+@mixin transition($what: all, $length: 1s, $easing: ease-in-out) {
+    -moz-transition:    $what $length $easing !important;
+    -o-transition:      $what $length $easing !important;
+    -webkit-transition: $what $length $easing !important;
+    -ms-transition:     $what $length $easing !important;
+    transition:         $what $length $easing !important;
+
+}
+
+@mixin triple-borders($colorOne: #3C3C3C, $colorTwo: #999999, $colorThree: #000000, $radius: 0) {
+    border: 1px solid $colorOne;
+
+@include border-radius($radius);
+
+    -webkit-box-shadow: 0 0 0 1px $colorTwo, 0 0 0 2px $colorThree;
+    -moz-box-shadow:    0 0 0 1px $colorTwo, 0 0 0 2px $colorThree;
+    box-shadow:         0 0 0 1px $colorTwo, 0 0 0 2px $colorThree;
+}
+
+@mixin respond-to($media) {
+	// Desktop
+	@if $media == max_screen320 {
+		@media only screen and (max-width: $break-320) { @content; }
+	}
+	@else if $media == min_screen320 {
+		@media only screen and (min-width: $break-320 + 1) { @content; }
+	}
+  @if $media == max_screen399 {
+    @media only screen and (max-width: $break-320 + 79) { @content; }
+  }
+	@else if $media == screen320-479 {
+		@media only screen and (min-width: $break-320) and (max-width: $break-480 - 1) { @content; }
+	}
+    @else if $media == screen320-514 {
+        @media only screen and (min-width: $break-320) and (max-width: $break-480 + 34) { @content; }
+    }
+    @else if $media == screen320-568 {
+        @media only screen and (min-width: $break-320) and (max-width: $break-568) { @content; }
+    }
+    @else if $media == screen320-640 {
+        @media only screen and (min-width: $break-320) and (max-width: $break-640) { @content; }
+    }
+	@else if $media == screen320-991 {
+		@media only screen and (min-width: $break-320) and (max-width: $break-991) { @content; }
+	}
+	@else if $media == screen321-479 {
+		@media only screen and (min-width: $break-320 + 1) and (max-width: $break-480 - 1) { @content; }
+	}
+	@else if $media == screen321-568 {
+		@media only screen and (min-width: $break-320 + 1) and (max-width: $break-568) { @content; }
+	}
+	@else if $media == screen321-640 {
+		@media only screen and (min-width: $break-320 + 1) and (max-width: $break-640) { @content; }
+	}
+    @else if $media == max_screen400 {
+        @media only screen and (max-width: $break-480 - 80) { @content; }
+    }
+    @else if $media == screen400-514 {
+        @media only screen and (min-width: $break-480 - 80) and (max-width: $break-480 + 34) { @content; }
+    }
+    @else if $media == screen401-431 {
+        @media only screen and (min-width: $break-480 - 79) and (max-width: $break-480 - 49) { @content; }
+    }
+    @else if $media == screen401-640 {
+        @media only screen and (min-width: $break-480 - 79) and (max-width: $break-640) { @content; }
+    }
+    @else if $media == max_screen431 {
+        @media only screen and (max-width: $break-480 - 49) { @content; }
+    }
+    @else if $media == screen432-640 {
+        @media only screen and (min-width: $break-480 - 48) and (max-width: $break-640) { @content; }
+    }
+    @else if $media == screen456-640 {
+        @media only screen and (min-width: $break-480 - 24) and (max-width: $break-640) { @content; }
+    }
+	@else if $media == max_screen479 {
+		@media only screen and (max-width: $break-480 - 1) { @content; }
+	}
+	@else if $media == screen480-640 {
+		@media only screen and (min-width: $break-480) and (max-width: $break-640) { @content; }
+	}
+	@else if $media == screen480-568 {
+		@media only screen and (min-width: $break-480) and (max-width: $break-568) { @content; }
+	}
+	@else if $media == screen480-767 {
+		@media only screen and (min-width: $break-480) and (max-width: $break-767) { @content; }
+	}
+	@else if $media == screen480-991 {
+		@media only screen and (min-width: $break-480) and (max-width: $break-991) { @content; }
+	}
+    @else if $media == max_screen509 {
+        @media only screen and (max-width: $break-480 + 29) { @content; }
+    }
+    @else if $media == screen515-640 {
+        @media only screen and (min-width: $break-480 + 35) and (max-width: $break-640) { @content; }
+    }
+    @else if $media == min_screen569 {
+        @media only screen and (min-width: $break-568 + 1) { @content; }
+    }
+    @else if $media == max_screen568 {
+        @media only screen and (max-width: $break-568) { @content; }
+    }
+    @else if $media == screen569-640 {
+        @media only screen and (min-width: $break-568 + 1) and (max-width: $break-640) { @content; }
+    }
+    @else if $media == screen569-767 {
+        @media only screen and (min-width: $break-568 + 1) and (max-width: $break-767) { @content; }
+    }
+    @else if $media == screen569-991 {
+        @media only screen and (min-width: $break-568 + 1) and (max-width: $break-991) { @content; }
+    }
+	@else if $media == max_screen640 {
+		@media only screen and (max-width: $break-640) { @content; }
+	}
+	@else if $media == min_screen641 {
+		@media only screen and (min-width: $break-640 + 1) { @content; }
+	}
+	@else if $media == screen641-767 {
+		@media only screen and (min-width: $break-640 + 1) and (max-width: $break-767) { @content; }
+	}
+    @else if $media == screen641-800 {
+        @media only screen and (min-width: $break-640 + 1) and (max-width: $break-767 + 33) { @content; }
+    }
+	@else if $media == screen641-991 {
+		@media only screen and (min-width: $break-640 + 1) and (max-width: $break-991) { @content; }
+	}
+	@else if $media == max_screen767 {
+		@media only screen and (max-width: $break-767) { @content; }
+	}
+	@else if $media == min_screen768 {
+		@media only screen and (min-width: $break-767 + 1) { @content; }
+	}
+	@else if $media == screen768-991 {
+		@media only screen and (min-width: $break-767 + 1) and (max-width: $break-991) { @content; }
+	}
+    @else if $media == screen768-1199 {
+        @media only screen and (min-width: $break-767 + 1) and (max-width: $break-1200 - 1) { @content; }
+    }
+    @else if $media == screen768-1439 {
+        @media only screen and (min-width: $break-767 + 1) and (max-width: $break-1440 - 1) { @content; }
+    }
+    @else if $media == screen768-1599 {
+        @media only screen and (min-width: $break-767 + 1) and (max-width: $break-1600 - 1) { @content; }
+    }
+    @else if $media == screen960-991 {
+      @media only screen and (min-width: $break-991 - 31) and (max-width: $break-991) { @content; }
+  	}
+	@else if $media == max_screen991 {
+		@media only screen and (max-width: $break-991) { @content; }
+	}
+	@else if $media == min_screen992 {
+		@media only screen and (min-width: $break-991 + 1) { @content; }
+	}
+	@else if $media == screen992-1199 {
+		@media only screen and (min-width: $break-991 + 1) and (max-width: $break-1200 - 1) { @content; }
+	}
+	@else if $media == screen992-1299 {
+		@media only screen and (min-width: $break-991 + 1) and (max-width: $break-1300 - 1) { @content; }
+	}
+    @else if $media == screen992-1599 {
+        @media only screen and (min-width: $break-991 + 1) and (max-width: $break-1600 - 1) { @content; }
+    }
+    @else if $media == screen992-1439 {
+        @media only screen and (min-width: $break-991 + 1) and (max-width: $break-1440 - 1) { @content; }
+    }
+    @else if $media == max_screen1024 {
+        @media only screen and (max-width: $break-1200 - 76) { @content; }
+    }
+    @else if $media == max_screen1199 {
+        @media only screen and (max-width: $break-1200 - 1) { @content; }
+    }
+	@else if $media == min_screen1200 {
+		@media only screen and (min-width: $break-1200) { @content; }
+	}
+    @else if $media == screen1200-1299 {
+        @media only screen and (min-width: $break-1200) and (max-width: $break-1300 - 1) { @content; }
+    }
+    @else if $media == screen1200-1399 {
+        @media only screen and (min-width: $break-1200) and (max-width: $break-1400 - 1) { @content; }
+    }
+    @else if $media == screen1200-1599 {
+        @media only screen and (min-width: $break-1200) and (max-width: $break-1600 - 1) { @content; }
+    }
+	@else if $media == min_screen1300 {
+		@media only screen and (min-width: $break-1300) { @content; }
+	}
+    @else if $media == screen1300-1399 {
+        @media only screen and (min-width: $break-1300) and (max-width: $break-1400 - 1) { @content; }
+    }
+    @else if $media == min_screen1400 {
+        @media only screen and (min-width: $break-1400) { @content; }
+    }
+	@else if $media == min_screen1440 {
+		@media only screen and (min-width: $break-1440) { @content; }
+	}
+    @else if $media == screen1400-1499 {
+        @media only screen and (min-width: $break-1400) and (max-width: $break-1500 - 1) { @content; }
+    }
+    @else if $media == min_screen1500 {
+        @media only screen and (min-width: $break-1500) { @content; }
+    }
+    @else if $media == screen1500-1599 {
+        @media only screen and (min-width: $break-1500) and (max-width: $break-1600 - 1) { @content; }
+    }
+    @else if $media == max_screen1599 {
+        @media only screen and (max-width: $break-1600 - 1) { @content; }
+    }
+    @else if $media == min_screen1600 {
+        @media only screen and (min-width: $break-1600) { @content; }
+    }
+    @else if $media == screen1600-1775 {
+        @media only screen and (min-width: $break-1600) and (max-width: $break-1775) { @content; }
+    }
+    @else if $media == min_screen1775 {
+        @media only screen and (min-width: $break-1775) { @content; }
+    }
+	// iPhone and iPad
+	@else if $media == handhelds-portrait {
+		@media only screen and (min-device-width : $break-320) and (max-device-width : $break-568) and (orientation : portrait) { @content; }
+	}
+	@else if $media == handhelds-landscape {
+		@media only screen and (min-device-width : $break-320) and (max-device-width : $break-568) and (orientation : landscape) { @content; }
+	}
+    @else if $media == handhelds-screen {
+        @media only screen and (min-device-width : $break-320) and (max-device-width : $break-568) { @content; }
+    }
+
+    @else if $media == handhelds-portrait-6 {
+        @media only screen and (min-device-width: $break-375) and (max-device-width: $break-667) and (orientation : portrait) { @content; }
+    }
+    @else if $media == handhelds-landscape-6 {
+        @media only screen and (min-device-width: $break-375) and (max-device-width: $break-667) and (orientation : landscape) { @content; }
+    }
+    @else if $media == handhelds-screen-6 {
+       @media only screen and (min-device-width: $break-375) and (max-device-width: $break-667) { @content; }
+    }
+
+    @else if $media == handhelds-portrait-6-plus {
+        @media only screen and (min-device-width: $break-414) and (max-device-width: $break-736) and (orientation : portrait) { @content; }
+    }
+    @else if $media == handhelds-landscape-6-plus {
+        @media only screen and (min-device-width: $break-414) and (max-device-width: $break-736) and (orientation : landscape) { @content; }
+    }
+    @else if $media == handhelds-screen-6-plus {
+       @media only screen and (min-device-width: $break-414) and (max-device-width: $break-736) { @content; }
+    }
+	@else if $media == tablets-portrait {
+		@media only screen and (min-device-width : $break-767 + 1) and (max-device-width : $break-1024) and (orientation : portrait) { @content; }
+	}
+	@else if $media == tablets-landscape {
+		@media only screen and (min-device-width : $break-767 + 1) and (max-device-width : $break-1024) and (orientation : landscape) { @content; }
+	}
+    @else if $media == tablets-screen {
+        @media only screen and (min-device-width : $break-767 + 1) and (max-device-width : $break-1024) { @content; }
+    }
+    // IE
+    @else if $media == ie-ten-plus-screen {
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { @content; }
+    }
+    @else if $media == ie-nine-ten-screen {
+        @media screen and (min-width:0\0) { @content; }
+    }
+}
